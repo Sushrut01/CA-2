@@ -1,0 +1,28 @@
+#include<stdio.h>
+main()
+{
+	int n,i;
+	printf("Enter the number of process you want to take initially: ");
+	scanf("%d",&n);
+	char ProcessId[10][3], status[10];
+	int ArrTime[10], BurstTime[10], Priority[10], WaitTime[10];
+	printf("Enter the information for process : ");
+	for(i=0;i<n;i++)
+	{
+		printf("%d",i+1);
+		printf("\nEnter the process id: ");
+		scanf("%s",&ProcessId[i]);
+		printf("\nEnter the arrival time: ");
+		scanf("%d",&ArrTime[i]);
+		printf("\nEnter the BurstTime:");
+		scanf("%d",&BurstTime[i]);
+		printf("\nEnter the priority: ");
+		scanf("%d",&Priority[i]);
+	}
+	printf("\n The details are: ");
+	printf("\nProcessId \tArrivalTime \tBurstTime \tPriority");
+	for(i=0;i<n;i++)
+	{
+		printf("\n%s \t\t %d \t\t %d \t\t %d",ProcessId[i],ArrTime[i],BurstTime[i],Priority[i]);
+	}
+}
