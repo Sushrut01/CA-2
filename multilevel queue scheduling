@@ -6,15 +6,15 @@ void main()
 	char process[10][5],temp[5];
 	int i,j,burst_time[10],wait_time[10],total_wait=0,priority[10],temp1,n;
 	float avg_wait;
-	printf("enter no of processes:");//for students
+	printf("Enter the number of processes in students queue: ");//for students
 	scanf("%d",&n);
 	for(i=0;i<n;i++)
 	{
-		printf("enter process%d name:",i+1);
+		printf("Enter the process%d id: ",i+1);
   		scanf("%s",&process[i]);
-		printf("enter burst time:");
+		printf("Enter the burst time: ");
 		scanf("%d",&burst_time[i]);
-		printf("enter priority:");
+		printf("Enter the priority: ");
 		scanf("%d",&priority[i]);
 	}
   	for(i=0;i<n-1;i++)
@@ -47,23 +47,27 @@ void main()
 	{
 	   printf(" %s\t %d\t %d\t\t %d\n" ,process[i],burst_time[i],priority[i],wait_time[i]);
 	}
-	printf("total waiting time=%d\n avg waiting time=%f",total_wait,avg_wait);
+	printf("\nThe total waiting time=%d\nThe average waiting time=%f\n",total_wait,avg_wait);
+	
+	
+	//end of students queue
+	
 	//applying round robin for teachers process
-	int time_quantum,process_id[10],need[10],wait_t1[10],tat[10],i1,j1,n2,n1;
-	int bt[10],flag[10],ttat=0,twt=0;
-	float awt,atat;
- 	printf("\nEnter the number of Processors \n");
+	int time_quantum,process_id[10],need[10],wait_t1[10],turn_around_time[10],i1,j1,n2,n1;
+	int burst_t[10],flag[10],total_turn_around_time=0,total_wait_time=0;
+	float avg_wait_time,avg_turn_around_time;
+ 	printf("\nEnter the number of Processes in teachers queue: \n");
 	scanf("%d",&n);
 	n1=n;
-	printf("\n Enter the Timeslice \n");
+	printf("\nEnter the Time quantum: ");
  	scanf("%d",&time_quantum);
  	for(i=1;i<=n;i++)
 	{
-   		printf("\n Enter the process ID %d",i);
+   		printf("\nEnter the process id: ");
 		scanf("%d",&process_id[i]);
-   		printf("\n Enter the Burst Time for the process");
-   		scanf("%d",&bt[i]);
-   		need[i]=bt[i];
+   		printf("\nEnter the Burst Time for the process: ");
+   		scanf("%d",&burst_t[i]);
+   		need[i]=burst_t[i];
  	}
  	for(i=1;i<=n;i++)
 	{
@@ -104,17 +108,17 @@ void main()
 	}
 	for(i=1;i<=n1;i++)
 	{
-  		tat[i]=wait_time[i]+bt[i];
-  		twt=twt+wait_time[i];
-  		ttat=ttat+tat[i];
+  		turn_around_time[i]=wait_time[i]+burst_t[i];
+  		total_wait_time=total_wait_time+wait_time[i];
+  		total_turn_around_time=total_turn_around_time+turn_around_time[i];
 	}
-	awt=twt/n1;
-	atat=ttat/n1;
+	avg_wait_time=total_wait_time/n1;
+	avg_turn_around_time=total_turn_around_time/n1;
 	printf("\n\n Process \t Process ID  \t BurstTime \t Waiting Time \t TurnaroundTime \n ");
 	for(i=1;i<=n1;i++)
 	{ 
- 		printf("\n %d \t\t %d \t\t %d \t\t %d \t\t %d \n", i,process_id[i],bt[i],wait_time[i],tat[i]);
+ 		printf("\n %d \t\t %d \t\t %d \t\t %d \t\t %d \n", i,process_id[i],burst_t[i],wait_time[i],turn_around_time[i]);
 	}
-	printf("\n The average Waiting Time=%f",awt);
-	printf("\n The average Turn around Time=%f",atat);
+	printf("\nThe average Waiting Time=%f",avg_wait_time);
+	printf("\nThe average Turn around Time=%f",avg_turn_around_time);
 }
